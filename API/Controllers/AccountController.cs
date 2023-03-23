@@ -26,7 +26,7 @@ namespace API.Controllers
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken.");
 
-            using var hmac = new HMACSHA512(); //it has a Dispose method if we go all the way to the base class
+            using var hmac = new HMACSHA512(); //<- has a Dispose method if we go all the way to the base class
 
             var user = new AppUser()
             {
