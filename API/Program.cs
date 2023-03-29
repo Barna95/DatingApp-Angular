@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 using Serilog;
 
 namespace API
@@ -19,7 +20,10 @@ namespace API
                 .WriteTo.File("D:\\DateApp\\log.txt").MinimumLevel.Warning()
                 .WriteTo.File("D:\\DateApp\\structuredLog.json").MinimumLevel.Warning());
 
+
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
 
