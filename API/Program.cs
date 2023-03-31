@@ -1,3 +1,4 @@
+using API.Data;
 using API.Extensions;
 using API.Middleware;
 using Serilog;
@@ -36,6 +37,8 @@ namespace API
             app.UseAuthorization();
 
             app.MapControllers();
+
+            Seed.SeedUsers(app);
 
             app.Run();
         }
