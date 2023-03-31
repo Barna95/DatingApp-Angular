@@ -22,6 +22,7 @@ namespace API.Controllers
             //Unauthorized error
             return "No Secret.";
         }
+
         [HttpGet("not-found")]
         public ActionResult<AppUser> GetNotFound()
         {
