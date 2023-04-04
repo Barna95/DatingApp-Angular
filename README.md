@@ -27,7 +27,6 @@ npm install rxjs
 ```
 ### Run the backend
 1. Run the .sln in your IDE OR move into the rootfolder and use the following:
-2.
 ```powershell
 dotnet run
  ```
