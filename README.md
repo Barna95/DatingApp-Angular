@@ -26,14 +26,14 @@ npm install -g @angular/cli
 npm install rxjs
 ```
 ### Run the backend
-1. Run the .sln in your IDE OR move into the rootfolder and use the following:
+1. Run the .sln in your IDE OR move into the rootfolder and use the following in your terminal:
 ```powershell
 dotnet run
  ```
 
 ### Run the frontend
 1. Make it sure that you are in the frontend folder.
-2. Run the following 
+2. Run the following in your terminal:
 ```powershell
  ng serve
  ```
