@@ -1,4 +1,5 @@
-﻿using API.DTOs;
+﻿using System.Security.Claims;
+using API.DTOs;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +31,24 @@ namespace API.Controllers
         {
             var user = await _userRepository.GetMemberAsync(username);
             return user;
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //to recognize the user we have to use ClaimTypes.NameIdentifier, not the JwtRegisteredClaimNames.NameId part even after registering with that
+            var user = await _userRepository.GetUserByNameAsync(username);
+
+            if (user == null) return NotFound();
+
+            _mapper.Map(memberUpdateDto, user);
+            //above the users properties are getting overwritten by the mapper, to the found user
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+            //if everything goes well, return 204 
+
+            return BadRequest("Failed to update user");
         }
     }
 }
