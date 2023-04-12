@@ -37,7 +37,11 @@ dotnet run
 
 ### Run the frontend
 1. Make it sure that you are in the frontend folder.
-2. Run the following in your terminal:
+2. In case the packages are missing:
+ ```powershell
+ npm install
+ ```
+3. Run the following in your terminal:
 ```powershell
  ng serve
  ```
