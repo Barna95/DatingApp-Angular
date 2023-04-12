@@ -26,7 +26,11 @@ npm install -g @angular/cli
 npm install rxjs
 ```
 ### Run the backend
-1. Run the .sln in your IDE OR move into the rootfolder and use the following in your terminal:
+1.If you don't have all the packages installed, run in terminal:
+```powershell
+dotnet restore
+```
+2.Run the .sln in your IDE OR move into the rootfolder and use the following in your terminal:
 ```powershell
 dotnet run
  ```
