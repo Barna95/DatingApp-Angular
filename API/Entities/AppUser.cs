@@ -20,9 +20,9 @@ namespace API.Entities
         public string City { get; set; }
         public List<Photo> Photos { get; set; } = new ();
 
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
+        //public List<AppUser> LikedByUsers { get; set; } these could be used also for the many to many join table, but its less talkative
+        //public List<AppUser> LikedUsers { get; set; } the table names will end up weird too
+        public List<UserLike> LikedByUsers { get; set; }
+        public List<UserLike> LikedUsers { get; set; }
     }
 }
