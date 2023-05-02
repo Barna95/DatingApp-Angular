@@ -10,6 +10,7 @@
 - [SQL Server Management Studio (SSMS)](https://aka.ms/ssmsfullsetup)
 - [.NET 7.0 SDK - Windows x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-7.0.202-windows-x64-installer)
 - [Node.js ](https://nodejs.org/en/download)
+- [Cloudinary account](https://cloudinary.com/)
 - Check the nodejs and npm version. They suppose to be Node >= 14.0.0 and npm >= 5.6
 ```powershell
 node -v
@@ -26,11 +27,14 @@ npm install -g @angular/cli
 npm install rxjs
 ```
 ### Run the backend
-1.If you don't have all the packages installed, run in terminal:
+1. If you don't have all the packages installed, run in terminal:
 ```powershell
 dotnet restore
 ```
-2.Run the .sln in your IDE OR move into the rootfolder and use the following in your terminal:
+
+2. Uncomment and fill up the connection string and cloudinary template in appsettings.Development.json<br>
+
+3. Run the .sln in your IDE OR move into the rootfolder and use the following in your terminal:
 ```powershell
 dotnet run
  ```
