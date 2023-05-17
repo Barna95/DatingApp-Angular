@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
+//import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,15 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
+  }
+
+  getDecodedToken(token: string) {
+    //console.log(jwt_decode(token)); jwt_decode is from a package that also decodes the token to be appealing to the eye.
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }
