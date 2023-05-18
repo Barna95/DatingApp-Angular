@@ -1,6 +1,7 @@
 using API.Data;
 using API.Extensions;
 using API.Middleware;
+using API.SignalR;
 using Serilog;
 
 namespace API
@@ -29,14 +30,21 @@ namespace API
             // Configure the HTTP request pipeline.
 
             app.UseHttpsRedirection();
-
-            app.UseCors(corsBuilder => corsBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            //allow credentials for signalR
+            app.UseCors(corsBuilder =>
+                corsBuilder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.MapControllers();
+            //create endpoint for SignalR, and which class it uses
+            app.MapHub<PresenceHub>("hubs/presence");
+            app.MapHub<MessageHub>("hubs/message");
 
             Seed.SeedUsers(app);
 

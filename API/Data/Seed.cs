@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
@@ -11,6 +12,7 @@ namespace API.Data
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateAsyncScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+                await context.Database.ExecuteSqlRawAsync("TRUNCATE TABLE [Connections]");
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
                 context.Database.EnsureCreated();

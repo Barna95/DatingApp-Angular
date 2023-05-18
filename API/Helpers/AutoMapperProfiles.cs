@@ -23,7 +23,10 @@ namespace API.Helpers
                 .ForMember(d => d.RecipientPhotoUrl,
                 opt =>
                     opt.MapFrom(s => s.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
-
+            CreateMap<DateTime, DateTime>()
+                .ConvertUsing(d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
+            CreateMap<DateTime?, DateTime?>()
+                .ConvertUsing(d => d.HasValue ? DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null);
         }
     }
 }
