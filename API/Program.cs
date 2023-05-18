@@ -44,6 +44,7 @@ namespace API
             app.MapControllers();
             //create endpoint for SignalR, and which class it uses
             app.MapHub<PresenceHub>("hubs/presence");
+            app.MapHub<MessageHub>("hubs/message");
 
             Seed.SeedUsers(app);
 
