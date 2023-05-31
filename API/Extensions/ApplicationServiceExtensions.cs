@@ -22,7 +22,7 @@ namespace API.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<AppDbContext>(options => options
-                .UseSqlServer(config
+                .UseNpgsql(config
                     .GetConnectionString("DefaultConnectionString")));
 
             services.AddCors();
