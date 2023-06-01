@@ -34,6 +34,6 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - run: cd API
-        - run: flyctl auth login --auth-token ${{ secrets.FLY_AUTH_TOKEN }}
+        - run: flyctl auth login --access-token ${{ secrets.FLY_AUTH_TOKEN }}
         - uses: superfly/flyctl-actions/setup-flyctl@master
         - run: flyctl deploy --remote-only
