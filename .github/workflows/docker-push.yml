@@ -1,46 +1,44 @@
-name: docker-push
+name: Deploy to Fly.io
 
 on:
-  workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'main'
-env:
-  FLY_API_TOKEN: ${{ secrets.FLYIO_TOKEN }}
+  push:
+    branches:
+      - main
+
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Set up Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Login to Docker Hub
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
+
+      - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:API"
           push: true
           tags: barna95/datingapp:latest
+
   deploy:
-      needs: docker
-      name: Deploy app
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
+    needs: docker
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-        - name: Set up Fly.io CLI
-          run: |
-            curl -L https://fly.io/install.sh | sh
+      - name: Set up Fly.io CLI
+        run: |
+          curl -L https://fly.io/install.sh | sh
 
-        - name: Log in to Fly.io
-          run: flyctl auth login --auth-token ${{ secrets.FLYIO_TOKEN }}
+      - name: Log in to Fly.io
+        run: flyctl auth login --auth-token ${{ secrets.FLY_AUTH_TOKEN }}
 
-        - name: Deploy to Fly.io
-          run: flyctl deploy
+      - name: Deploy to Fly.io
+        run: flyctl deploy
