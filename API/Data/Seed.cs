@@ -2,6 +2,7 @@
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace API.Data
 {
@@ -12,10 +13,10 @@ namespace API.Data
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateAsyncScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-                await context.Database.ExecuteSqlRawAsync("TRUNCATE TABLE [Connections]");
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
                 context.Database.EnsureCreated();
+                await ClearConnections(context);
 
                 var userData =  await File.ReadAllTextAsync("Data/UserSeedData.json");
 
@@ -37,6 +38,9 @@ namespace API.Data
                     foreach (var user in users)
                     {
                         user.UserName = user.UserName.ToLower();
+                        user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc); //Postgres is a needy one, and wants UTC
+                        user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
+                        user.DateOfBirth = DateTime.SpecifyKind(user.DateOfBirth, DateTimeKind.Utc);
 
                         await userManager.CreateAsync(user, "Pa$$w0rd");
                         await userManager.AddToRoleAsync(user, "Member");
@@ -52,6 +56,12 @@ namespace API.Data
 
                 }
             }
+        }
+        public static async Task ClearConnections(AppDbContext context)
+        {
+            //not as efficient as truncate table if we have hundreds of thousands of data
+            context.Connections.RemoveRange(context.Connections);
+            await context.SaveChangesAsync();
         }
     }
 }

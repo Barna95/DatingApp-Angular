@@ -3,7 +3,6 @@ using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using API.SignalR;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -21,9 +20,9 @@ namespace API.Extensions
             services.AddSingleton<PresenceTracker>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddDbContext<AppDbContext>(options => options
-                .UseSqlServer(config
-                    .GetConnectionString("DefaultConnectionString")));
+            //services.AddDbContext<AppDbContext>(options => options
+            //    .UseNpgsql(config
+            //        .GetConnectionString("DefaultConnectionString")));
 
             services.AddCors();
 

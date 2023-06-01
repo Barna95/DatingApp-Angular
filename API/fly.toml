@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for makelove on 2023-06-01T10:22:28+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "makelove"
+primary_region = "ams"
+
+[build]
+  image = "barna95/datingapp:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:7041"
+  CloudinarySettings__Cloudname="dfjvqrltt"
+  CloudinarySettings__ApiKey="962339714285182"
+
+[http_service]
+  internal_port = 7041
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
