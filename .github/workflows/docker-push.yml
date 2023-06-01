@@ -32,17 +32,15 @@ jobs:
       name: Deploy app
       runs-on: ubuntu-latest
       steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-            - name: Log in to Fly.io
-              uses: superfly/flyctl-actions@v1
-              with:
-                version: 'latest'
-                args: ${{FLYIO_TOKEN}}
+        - name: Set up Fly.io CLI
+          run: |
+            curl -L https://fly.io/install.sh | sh
 
-            - name: Deploy to Fly.io
-              uses: superfly/flyctl-actions@v1
-              with:
-                version: 'latest'
-                args: deploy
+        - name: Log in to Fly.io
+          run: flyctl auth login --auth-token ${{ secrets.FLYIO_TOKEN }}
+
+        - name: Deploy to Fly.io
+          run: flyctl deploy
