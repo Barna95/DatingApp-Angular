@@ -60,11 +60,11 @@ namespace API
 
             app.UseHttpsRedirection();
             //allow credentials for signalR
-            app.UseCors(corsBuilder =>
-                corsBuilder.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .WithOrigins("https://localhost:4200"));
+            //app.UseCors(corsBuilder =>
+            //    corsBuilder.AllowAnyHeader()
+            //        .AllowAnyMethod()
+            //        .AllowCredentials()
+            //        .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
 
