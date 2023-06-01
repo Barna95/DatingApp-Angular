@@ -32,6 +32,17 @@ jobs:
       name: Deploy app
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
-        - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy --remote-only
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Log in to Fly.io
+              uses: superfly/flyctl-actions@v1
+              with:
+                version: 'latest'
+                args: auth login-token fo1_arNj_NKh2Nz98CiQg5FaMMJB9rKuxt82lJIMK3x58is
+
+            - name: Deploy to Fly.io
+              uses: superfly/flyctl-actions@v1
+              with:
+                version: 'latest'
+                args: deploy
