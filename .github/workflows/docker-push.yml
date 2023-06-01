@@ -30,15 +30,8 @@ jobs:
     name: Deploy app
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Fly.io CLI
-        run: |
-          curl -L https://fly.io/install.sh | sh
-
-      - name: Log in to Fly.io
-        run: flyctl auth login --auth-token ${{ secrets.FLY_AUTH_TOKEN }}
-
-      - name: Deploy to Fly.io
-        run: flyctl deploy
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
