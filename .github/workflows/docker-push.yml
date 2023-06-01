@@ -27,14 +27,3 @@ jobs:
           context: "{{defaultContext}}:API"
           push: true
           tags: barna95/datingapp:latest
-  deploy:
-      needs: docker
-      name: Deploy app
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - run: cd API
-        - run: curl -L https://fly.io/install.sh | sh
-        - run: flyctl auth login --access-token ${{ secrets.FLY_AUTH_TOKEN }}
-        - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy --remote-only
