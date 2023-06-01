@@ -32,7 +32,6 @@ jobs:
     steps:
       - name: Navigate to API directory
         run: cd API
-      - name: Login to Fly.io
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
