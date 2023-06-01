@@ -31,15 +31,18 @@ namespace API
 
             app.UseHttpsRedirection();
             //allow credentials for signalR
-            app.UseCors(corsBuilder =>
-                corsBuilder.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .WithOrigins("https://localhost:4200"));
+            //app.UseCors(corsBuilder =>
+            //    corsBuilder.AllowAnyHeader()
+            //        .AllowAnyMethod()
+            //        .AllowCredentials()
+            //        .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseDefaultFiles(); //look for index.html in wwwroot and serve by default
+            app.UseStaticFiles(); //look for wwwroot and serve the content from inside there by default
 
             app.MapControllers();
             //create endpoint for SignalR, and which class it uses

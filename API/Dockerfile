@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
-EXPOSE 7041
 
 # Copy the csproj file and restore dependencies
 COPY *.csproj ./

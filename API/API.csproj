@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".github\**" />
+    <Content Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
@@ -36,10 +43,6 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".github\workflows\docker-push.yml" />
   </ItemGroup>
 
 </Project>
