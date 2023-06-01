@@ -39,7 +39,7 @@ jobs:
               uses: superfly/flyctl-actions@v1
               with:
                 version: 'latest'
-                args: auth login-token fo1_arNj_NKh2Nz98CiQg5FaMMJB9rKuxt82lJIMK3x58is
+                args: auth login-token ${{FLYIO_TOKEN}}
 
             - name: Deploy to Fly.io
               uses: superfly/flyctl-actions@v1
