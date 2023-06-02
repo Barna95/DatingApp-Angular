@@ -9,12 +9,12 @@
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Compile Remove=".github\**" />
     <Content Remove=".github\**" />
     <EmbeddedResource Remove=".github\**" />
     <None Remove=".github\**" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
