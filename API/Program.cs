@@ -2,7 +2,6 @@ using API.Data;
 using API.Extensions;
 using API.Middleware;
 using API.SignalR;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace API
@@ -36,7 +35,7 @@ namespace API
                 corsBuilder.AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
-                    .WithOrigins("https://localhost:4200"));
+                    .WithOrigins("https://localhost:4200").WithOrigins("https://readytomakelove.azurewebsites.net"));
 
             app.UseAuthentication();
 
