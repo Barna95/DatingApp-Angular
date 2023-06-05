@@ -41,8 +41,8 @@ namespace API
 
             app.UseAuthorization();
 
-            app.UseDefaultFiles(); //look for index.html in wwwroot and serve by default
-            app.UseStaticFiles(); //look for wwwroot and serve the content from inside there by default
+            //app.UseDefaultFiles(); //look for index.html in wwwroot and serve by default
+            //app.UseStaticFiles(); //look for wwwroot and serve the content from inside there by default
 
             app.MapControllers();
             //create endpoint for SignalR, and which class it uses
