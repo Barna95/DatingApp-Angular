@@ -1,17 +1,17 @@
-name: Build and deploy .NET Core application to Web App readytomakelove
+name: Build and deploy .NET Core application to Web App readytomakeloveAPI
 on:
   push:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: readytomakelove
-  AZURE_WEBAPP_PACKAGE_PATH: .\published
+  AZURE_WEBAPP_NAME: readytomakeloveAPI
+  AZURE_WEBAPP_PACKAGE_PATH: ./published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 7.0.x
   WORKING_DIRECTORY: .
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET SDK
@@ -32,7 +32,7 @@ jobs:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
     - name: Download artifact from build job
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.readytomakelove_CC35 }}
+        publish-profile: ${{ secrets.readytomakeloveAPI_7D42 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
