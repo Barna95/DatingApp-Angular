@@ -20,9 +20,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-
-      - name: Navigate to frontend folder
-        run: cd frontend
+          working-directory: frontend
 
       - name: npm install, build, and test
         run: |

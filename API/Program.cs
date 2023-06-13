@@ -33,9 +33,9 @@ namespace API
             //allow credentials for signalR
             app.UseCors(corsBuilder =>
                 corsBuilder.AllowAnyHeader()
-                    .AllowAnyMethod().AllowAnyOrigin());
-                    //.AllowCredentials()
-                    //.WithOrigins("http://localhost:4200"));
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("https://readytomakelovepresentation.azurewebsites.net/"));
 
             app.UseAuthentication();
 
