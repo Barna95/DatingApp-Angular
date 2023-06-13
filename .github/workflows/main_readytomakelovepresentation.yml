@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          working-directory: frontend
+          working-directory: DatingApp-Angular/frontend
 
       - name: npm install, build, and test
         run: |
