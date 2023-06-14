@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: frontend-app
-          path: frontend/dist
+          path: frontend/dist/frontend
 
   deploy:
     runs-on: ubuntu-latest
