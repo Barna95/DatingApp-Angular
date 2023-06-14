@@ -21,11 +21,9 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Navigate to frontend folder
-        run: cd frontend
-
       - name: npm install
         run: npm install
+        working-directory: frontend
       
       - name: Build and test
         run: |
