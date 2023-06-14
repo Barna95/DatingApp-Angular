@@ -31,7 +31,8 @@ jobs:
         working-directory: frontend
 
       - name: Copy web.config to dist folder
-        run: cp ./frontend/web.config ./frontend/dist/frontend/
+        run: cp web.config dist/frontend/
+        working-directory: frontend
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
