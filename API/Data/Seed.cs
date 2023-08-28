@@ -1,8 +1,7 @@
 ﻿using System.Text.Json;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+
 
 namespace API.Data
 {

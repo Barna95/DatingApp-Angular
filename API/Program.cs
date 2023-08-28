@@ -35,7 +35,7 @@ namespace API
                 corsBuilder.AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
-                    .WithOrigins("http://readytomakelovepresentation.azurewebsites.net/"));
+                    .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
 
